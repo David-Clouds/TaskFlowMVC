@@ -38,9 +38,21 @@ public class TasksController : Controller
         }
     };
 
-    public IActionResult Index()
+    public IActionResult Index(string? priority)
     {
-        var orderedTasks = Tasks
+        var validPriorities = new[] { "Alta", "Media", "Baja" };
+
+        var hasValidPriority = validPriorities.Contains(priority);
+
+        IEnumerable<TaskItem> filteredTasks = hasValidPriority
+            ? Tasks.Where(task => task.Priority == priority)
+            : Tasks;
+
+        ViewData["SelectedPriority"] = hasValidPriority
+            ? priority
+            : "Todas";
+
+        var orderedTasks = filteredTasks
             .OrderByDescending(task => task.CreatedAt)
             .ToList();
 
