@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            TASKFLOW MVC
+        </div>
+
+        <h1>
+            Convierte tus tareas
+            <span>en progreso.</span>
+        </h1>
+
+        <p>
+            Organiza tus actividades, controla tus prioridades
+            y visualiza tu progreso en una interfaz creada con
+            C#, ASP.NET Core MVC y .NET 10.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a asp-controller="Tasks"
+               asp-action="Index"
+               class="btn-main">
+                Explorar tareas
+            </a>
+
+            <a asp-controller="Tasks"
+               asp-action="Create"
+               class="btn-outline">
+                + Nueva tarea
+            </a>
+
+        </div>
+
+        <div class="tech-row">
+
+            <span>C#</span>
+            <span>.NET 10</span>
+            <span>MVC</span>
+            <span>Git</span>
+            <span>GitHub</span>
+
+        </div>
+
+    </div>
+
+    <div class="visual-zone">
+
+        <div class="glow glow-purple"></div>
+        <div class="glow glow-cyan"></div>
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-top">
+
+                <div>
+                    <small>PRODUCTIVITY</small>
+                    <h3>Mi progreso</h3>
+                </div>
+
+                <div class="dashboard-icon">
+                    ↗
+                </div>
+
+            </div>
+
+            <div class="progress-circle">
+
+                <div>
+                    <strong>78%</strong>
+                    <small>completado</small>
+                </div>
+
+            </div>
+
+            <div class="mini-stat">
+
+                <div class="mini-icon purple">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>12 tareas</strong>
+                    <small>completadas esta semana</small>
+                </div>
+
+            </div>
+
+            <div class="mini-stat">
+
+                <div class="mini-icon cyan">
+                    ◆
+                </div>
+
+                <div>
+                    <strong>4 pendientes</strong>
+                    <small>para continuar avanzando</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

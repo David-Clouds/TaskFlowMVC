@@ -1,0 +1,21 @@
+# Build
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# User files
+*.user
+*.suo
+
+# Test results
+TestResults/
+
+# Publish
+publish/
+
+# OS
+.DS_Store
+Thumbs.db

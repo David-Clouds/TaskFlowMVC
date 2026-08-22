@@ -1,0 +1,187 @@
+@model IEnumerable<TaskFlowMVC.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Mis tareas";
+
+    int totalTasks = Model.Count();
+    int completedTasks = Model.Count(x => x.IsCompleted);
+    int pendingTasks = Model.Count(x => !x.IsCompleted);
+}
+
+<section class="tasks-container">
+
+    <div class="page-title">
+
+        <div>
+
+            <div class="hero-label">
+                TASK MANAGEMENT
+            </div>
+
+            <h1>Mis tareas</h1>
+
+            <p>
+                Administra tus actividades y mantén tu día organizado.
+            </p>
+
+        </div>
+
+        <a asp-action="Create"
+           class="btn-main">
+            + Crear tarea
+        </a>
+
+    </div>
+
+    @if (TempData["Success"] is not null)
+    {
+        <div class="alert-success">
+            <span>✓</span>
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <span>Total</span>
+
+            <strong>
+                @totalTasks
+            </strong>
+
+            <small>
+                tareas registradas
+            </small>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>Completadas</span>
+
+            <strong>
+                @completedTasks
+            </strong>
+
+            <small>
+                tareas terminadas
+            </small>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>Pendientes</span>
+
+            <strong>
+                @pendingTasks
+            </strong>
+
+            <small>
+                tareas por hacer
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="tasks-grid">
+
+        @foreach (var task in Model)
+        {
+            <article class="task-card @(task.IsCompleted ? "task-completed" : "")">
+
+                <div class="task-header">
+
+                    <span class="priority @task.Priority.ToLower()">
+                        @task.Priority
+                    </span>
+
+                    <span class="task-date">
+                        @task.CreatedAt.ToString("dd/MM/yyyy")
+                    </span>
+
+                </div>
+
+                <div class="task-symbol">
+
+                    @(task.IsCompleted ? "✓" : "○")
+
+                </div>
+
+                <h2>
+                    @task.Title
+                </h2>
+
+                <p>
+                    @task.Description
+                </p>
+
+                <div class="task-status">
+
+                    @if (task.IsCompleted)
+                    {
+                        <span class="status-complete">
+                            COMPLETADA
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-pending">
+                            PENDIENTE
+                        </span>
+                    }
+
+                </div>
+
+                <div class="task-actions">
+
+                    <form asp-action="Complete"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="id"
+                               value="@task.Id" />
+
+                        <button type="submit"
+                                class="action-button">
+
+                            @(task.IsCompleted
+                                ? "Reabrir"
+                                : "Completar")
+
+                        </button>
+
+                    </form>
+
+                    <form asp-action="Delete"
+                          method="post"
+                          onsubmit="return confirm('¿Seguro que deseas eliminar esta tarea?');">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="id"
+                               value="@task.Id" />
+
+                        <button type="submit"
+                                class="action-button delete">
+
+                            Eliminar
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </article>
+        }
+
+    </div>
+
+</section>

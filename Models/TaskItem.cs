@@ -1,0 +1,22 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace TaskFlowMVC.Models;
+
+public class TaskItem
+{
+    public int Id { get; set; }
+
+    [Required(ErrorMessage = "El título es obligatorio.")]
+    [StringLength(100, ErrorMessage = "El título no puede superar los 100 caracteres.")]
+    public string Title { get; set; } = string.Empty;
+
+    [StringLength(300, ErrorMessage = "La descripción no puede superar los 300 caracteres.")]
+    public string Description { get; set; } = string.Empty;
+
+    public bool IsCompleted { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    [Required]
+    public string Priority { get; set; } = "Media";
+}
