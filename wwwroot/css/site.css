@@ -737,6 +737,92 @@ nav a:hover {
         var(--muted);
 }
 
+/* FILTERS */
+
+.filters {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin:
+        30px 0;
+
+    flex-wrap:
+        wrap;
+}
+
+.filter-pill {
+    padding:
+        9px 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:
+        var(--muted);
+
+    font-size:
+        .8rem;
+
+    font-weight:
+        700;
+
+    transition:
+        color .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+}
+
+.filter-pill:hover {
+    color:
+        var(--text);
+}
+
+.filter-pill.filter-active {
+    border-color:
+        rgba(139,92,246,.25);
+
+    background:
+        rgba(139,92,246,.13);
+
+    color:
+        var(--purple-light);
+}
+
+.empty-state {
+    padding:
+        45px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        20px;
+
+    background:
+        var(--card);
+
+    backdrop-filter:
+        blur(15px);
+
+    color:
+        var(--muted);
+}
+
 .alert-success {
     display:
         flex;

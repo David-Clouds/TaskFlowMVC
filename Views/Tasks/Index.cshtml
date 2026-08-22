@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Mis tareas";
 
+    var selectedPriority = (string)(ViewData["SelectedPriority"] ?? "Todas");
+
     int totalTasks = Model.Count();
     int completedTasks = Model.Count(x => x.IsCompleted);
     int pendingTasks = Model.Count(x => !x.IsCompleted);
@@ -29,6 +31,33 @@
         <a asp-action="Create"
            class="btn-main">
             + Crear tarea
+        </a>
+
+    </div>
+
+    <div class="filters">
+
+        <a asp-action="Index"
+           class="filter-pill @(selectedPriority == "Todas" ? "filter-active" : "")">
+            Todas
+        </a>
+
+        <a asp-action="Index"
+           asp-route-priority="Alta"
+           class="filter-pill @(selectedPriority == "Alta" ? "filter-active" : "")">
+            Alta
+        </a>
+
+        <a asp-action="Index"
+           asp-route-priority="Media"
+           class="filter-pill @(selectedPriority == "Media" ? "filter-active" : "")">
+            Media
+        </a>
+
+        <a asp-action="Index"
+           asp-route-priority="Baja"
+           class="filter-pill @(selectedPriority == "Baja" ? "filter-active" : "")">
+            Baja
         </a>
 
     </div>
@@ -183,5 +212,12 @@
         }
 
     </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            No hay tareas con esta prioridad.
+        </div>
+    }
 
 </section>
